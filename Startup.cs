@@ -10,28 +10,31 @@ using Senai.Aulas.ProjetoFinal.Interfaces;
 using Senai.Aulas.ProjetoFinal.Repositorio;
 
 namespace Senai.Aulas.ProjetoFinal {
-        public class Startup {
-            // This method gets called by the runtime. Use this method to add services to the container.
-            // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-            public void ConfigureServices (IServiceCollection services) {
+    public class Startup {
+        // This method gets called by the runtime. Use this method to add services to the container.
+        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        public void ConfigureServices (IServiceCollection services) {
 
-                services.AddMvc ();
+            services.AddMvc ();
 
-                services.AddDistributedMemoryCache ();
-                
+            services.AddDistributedMemoryCache ();
+            services.AddSession (
+                options => options.IdleTimeout = TimeSpan.FromMinutes (30)
+            );
 
-            }
+        }
 
-            // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-            public void Configure (IApplicationBuilder app, IHostingEnvironment env) {
-                if (env.IsDevelopment ()) {
-                    app.UseDeveloperExceptionPage ();
-                    app.UseStaticFiles();
-                    app.UseMvc (
-                        rota => rota.MapRoute (
-                            name: "default",
-                            template: "{controller=Usuario}/{action=Login}"));
-                    }
-                }
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure (IApplicationBuilder app, IHostingEnvironment env) {
+            if (env.IsDevelopment ()) {
+                app.UseDeveloperExceptionPage ();
+                app.UseStaticFiles ();
+                app.UseSession ();
+                app.UseMvc (
+                    rota => rota.MapRoute (
+                        name: "default",
+                        template: "{controller=Home}/{action=Index}"));
             }
         }
+    }
+}

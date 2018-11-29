@@ -10,7 +10,7 @@ namespace Senai.Aulas.ProjetoFinal.Models {
         public string Comentario { get; set; }
 
         public DateTime DataComentario { get; set; }
-        private Boolean Aprovado { get; set; }
+        public Boolean Aprovado { get; private set; }
 
         public ComentarioModel (int id, UsuarioModel nome, string comentario, DateTime data) {
             this.ID = id;
@@ -18,7 +18,11 @@ namespace Senai.Aulas.ProjetoFinal.Models {
             this.Comentario = comentario;
             this.DataComentario = data;
         }
-        //         public ComentarioModel (int id, UsuarioModel nome, string comentario, DateTime data) {
+        public ComentarioModel(UsuarioModel nome, string comentario){
+            this.Nome = nome;
+            this.Comentario = comentario;
+        }
+        // public ComentarioModel (int id, UsuarioModel nome, string comentario, DateTime data) {
         //     this.ID = id;
         //     this.Nome = nome;
         //     this.Comentario = comentario;

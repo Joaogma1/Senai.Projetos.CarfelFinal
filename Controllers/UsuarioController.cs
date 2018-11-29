@@ -28,7 +28,7 @@ namespace Senai.Aulas.ProjetoFinal.Controllers {
                 nome: form["nome"],
                 email: form["email"],
                 senha: form["senha"],
-                dataNascimento: DateTime.Parse (form["dataNascimento"]));
+                tipo: false);
 
             // UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio();
 
@@ -36,7 +36,7 @@ namespace Senai.Aulas.ProjetoFinal.Controllers {
 
             ViewBag.Mensagem = "Usuário Cadastrado";
 
-            return RedirectToAction ("Login","Usuario");
+            return RedirectToAction ("login", "Usuario");
         }
 
         [HttpGet]
@@ -49,7 +49,6 @@ namespace Senai.Aulas.ProjetoFinal.Controllers {
             UsuarioModel usuario = new UsuarioModel (
                 email: form["email"],
                 senha: form["senha"]
-
             )
 
             ;
@@ -59,11 +58,11 @@ namespace Senai.Aulas.ProjetoFinal.Controllers {
             UsuarioModel usuarioModel = UsuarioRepositorio.ValidarLogin (usuario.Email, usuario.Senha);
 
             if (usuarioModel != null) {
-                HttpContext.Session.SetString ("idUsuario", usuarioModel.Email.ToString ());
-
+                HttpContext.Session.SetString ("idUsuario", usuarioModel.ID.ToString ());
+                 HttpContext.Session.SetString ("NomeUsuario", usuarioModel.Nome.ToString ());
                 ViewBag.Mensagem = "Login realizado com sucesso!";
 
-                return RedirectToAction ("Usuario", "Logado"); // falta implementar
+                return RedirectToAction ("Usuario", "Logado"); // implemntar direcionamento para home logada
             } else {
                 ViewBag.Mensagem = "Acesso negado!";
             }

@@ -7,14 +7,15 @@ Layout= "LoginAdmin";
 <div class="login-page">
     <div class="form">
         <form class="register-form" action="/Usuario/Cadastro" method="POST">
+        <h2>Cadastro</h2>
             <input type="text" placeholder="Nome" name="nome" />
             <input type="text" placeholder="Endereço de email" name="email" />
             <input type="password" placeholder="Senha" name="senha" />
-            <input type="datetime" placeholder="Data Nascimento (DD/MM/AAAA) " name="dataNascimento">
             <button type="submit">Cadastrar</button>
             <p class="message">Já registrado? <a href="#">Logar</a></p>
         </form>
         <form class="login-form" action="/Usuario/Login" method="POST">
+        <h2>Login</h2>
             <input type="text" placeholder="username" />
             <input type="password" placeholder="password" />
             <button type="submit">Logar</button>

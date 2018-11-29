@@ -1,0 +1,173 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.menu.escondido{
+    display: none;
+
+}
+body{
+    font-size: 14px;
+}
+.top-bar{
+    width: 100%;
+    height: auto;
+    background: #000000;
+    display: flex;
+    padding: 1% 5%;
+}
+.logo{
+    color:#fff;
+    display: flex;
+    font-size: 1.4em;
+    /* background: #888; */
+    flex:1;
+    justify-content: space-between;
+}
+.menu{
+    flex:3;
+}
+.menu ul{
+    list-style-type: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.menu ul li{
+    flex:1;
+    /* background: #444; */
+    text-align: center;
+}
+.menu ul a{
+    color:#FFF;
+    text-decoration: none;
+    font-size: 1.8em;
+    padding: 0.8em 2em;
+}
+.menu ul a:hover{
+    color: yellow;
+}
+
+.banner{
+    background: url('../imagens/xisde.jpeg');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.banner-text{
+    color:#fff;
+    width: 50%;
+    text-align: center;
+}
+.banner-text h2{
+    font-size: 4em;
+}
+.banner-text p{
+    font-size: 1.3em;
+    text-shadow: 0 0 2px #000;
+}
+.cont-principal{
+    text-align: center;
+    width: 100%;
+    /* background: cyan; */
+    padding: 2em 0;
+}
+.cont-principal h2{
+    font-size: 2em;
+    text-transform: uppercase;
+}
+.cont-principal-itens{
+    display: flex;
+    padding: 2em;
+    justify-content: space-around;
+}
+.cont-principal-item{
+    max-width: 300px;
+}
+.cont-principal-item h3{
+    font-size: 1.5em;
+    padding: 0.5em;
+}
+.contact{
+    background: url("../imagens/dexis.jpeg");
+    background-size: cover;
+    padding: 15em 0;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.contact h2{
+    color: #fff;
+    text-shadow: 0 0 3px #000;
+    font-size: 2em;
+}
+.contact-itens{
+    padding-top: 2em;
+    display: flex;
+    justify-content: center;
+}
+.contact-itens form{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+.contact-itens form > *{
+    margin-bottom: 1em;
+}
+.contact-itens form input[type="button"]{
+    width: 50%;
+    margin: auto;
+}
+.contact-itens form input{
+    height: 2em;
+    border-radius: 5px;
+    font-size: 1.5em;
+}
+.contact-itens textarea{
+    resize: none;
+    border-radius: 5px;
+}
+.fullscreen{
+    /* viewport height: altura de perspectiva */
+    height: 100vh;
+}
+/* largura até 910px */
+@media screen and (max-width:910px){
+    .top-bar{
+        flex-direction: column;
+        text-align: center;
+    }
+    .menu ul{
+        flex-direction: column;
+    }
+    .logo{
+        display: flex;
+    }
+    .cont-principal-itens{
+        flex-direction: column;
+        align-items: center;
+    }
+    .menu ul a {
+        padding: 0.4em;
+    }
+}
+@media screen and (max-width: 600px){
+   .banner{
+       height: 70vh ;
+   }
+    .banner-text{
+        font-size: 0.8em;
+        width: 90%;
+
+    }
+    .banner-text p {
+        font-size: 1.6em;
+    }
+    .contact-itens form{
+        width: 90vw;
+    }
+}

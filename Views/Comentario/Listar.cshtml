@@ -1,0 +1,19 @@
+@using Senai.Aulas.ProjetoFinal.Models;
+@{
+    Layout = "MasterPageGeral";
+}
+ @foreach(ComentarioModel Comentario in ViewData["Comentario"] as List<ComentarioModel>)
+        {
+            if (Comentario.Aprovado)
+            {
+            <div class="Corpo comentario">
+                <div class="info">
+                    <h2>@Comentario.Nome</h2> <h3>@Comentario.DataComentario</h3>
+                </div>
+                <div class="Comentario">
+                    <p>@Comentario.Comentario</p>
+                </div>
+            </div>
+                
+            }
+        }
