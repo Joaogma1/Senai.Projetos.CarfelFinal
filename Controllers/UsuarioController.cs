@@ -2,9 +2,10 @@ using System;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Projeto_Senai.Carfel.Final.Models;
+using Projeto_Senai.Carfel.Final.Repositorios;
 using Senai.Aulas.ProjetoFinal.Interfaces;
 using Senai.Aulas.ProjetoFinal.Models;
-using Senai.Aulas.ProjetoFinal.Repositorio;
 
 namespace Senai.Aulas.ProjetoFinal.Controllers {
     public class UsuarioController : Controller {
@@ -12,8 +13,7 @@ namespace Senai.Aulas.ProjetoFinal.Controllers {
         public IUsuario UsuarioRepositorio { get; set; }
 
         public UsuarioController () {
-            UsuarioRepositorio = new UsuarioRepositorioSerializacao ();
-
+            UsuarioRepositorio = new UsuarioRepositorio ();
         }
 
         [HttpGet]
@@ -28,7 +28,7 @@ namespace Senai.Aulas.ProjetoFinal.Controllers {
                 nome: form["nome"],
                 email: form["email"],
                 senha: form["senha"],
-                tipo: false);
+                admin: false);
 
             // UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio();
 
@@ -55,17 +55,16 @@ namespace Senai.Aulas.ProjetoFinal.Controllers {
 
             //Verificar se o usuário possuí acesso para realizazr login
 
-            UsuarioModel usuarioModel = UsuarioRepositorio.ValidarLogin (usuario.Email, usuario.Senha);
+            UsuarioModel usuarioModel = UsuarioRepositorio.Login (usuario.Email, usuario.Senha);
 
             if (usuarioModel != null) {
-                HttpContext.Session.SetString ("idUsuario", usuarioModel.ID.ToString ());
-                 HttpContext.Session.SetString ("NomeUsuario", usuarioModel.Nome.ToString ());
+                HttpContext.Session.SetString ("NomeUsuario", usuarioModel.Nome);
+                HttpContext.Session.SetInt32("IdUsuario", usuarioModel.Id);
                 ViewBag.Mensagem = "Login realizado com sucesso!";
 
-                return RedirectToAction ("Usuario", "Logado"); // implemntar direcionamento para home logada
-            } else {
+                return RedirectToAction ("Comentar", "Comentario"); // implemntar direcionamento para home logada
+            } 
                 ViewBag.Mensagem = "Acesso negado!";
-            }
 
             return View ();
         }
@@ -93,42 +92,45 @@ namespace Senai.Aulas.ProjetoFinal.Controllers {
 
             return RedirectToAction ("Listar");
         }
-
         [HttpGet]
-        public IActionResult Editar (int id) {
+        public IActionResult Editar(int id){
 
-            if (id == 0) {
-                TempData["Mensagem"] = "Informe um id";
-                return RedirectToAction ("Listar");
+            if(id == 0){
+                TempData["Mensagem"] = "Informe um usuário para editar";
+                return RedirectToAction("Listar");
             }
 
-            UsuarioModel usuario = UsuarioRepositorio.ProcurarID (id);
+            UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio();
+            UsuarioModel usuario = usuarioRepositorio.BuscarPorId(id);
 
-            if (usuario != null) {
+            if(usuario != null){
                 ViewBag.Usuario = usuario;
-                return View ();
+            } else {
+                TempData["Mensagem"] = "Usuário não encontrado";
+                return RedirectToAction("Listar");
             }
-
-            TempData["Mensagem"] = "Usuário não encontrado";
-            return RedirectToAction ("Listar");
+            
+            return View();
         }
-
+    
         [HttpPost]
-        public IActionResult Editar (IFormCollection form) {
-
-            UsuarioModel usuario = new UsuarioModel (
-                id: int.Parse (form["id"]),
+        public IActionResult Editar(IFormCollection form){
+            //Declara um objeto UsuarioModel e atribui os valores do form
+            UsuarioModel usuario = new UsuarioModel(
+                id: int.Parse(form["id"]),
                 nome: form["nome"],
                 email: form["email"],
                 senha: form["senha"],
-                dataNascimento: DateTime.Parse (form["dataNascimento"])
+                admin: Boolean.Parse(form["admin"])
             );
 
-            UsuarioRepositorio.Editar (usuario);
+            //Cria um objeto UsuarioRepositorio e edita
+            UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio();
+            usuarioRepositorio.Editar(usuario);
 
             TempData["Mensagem"] = "Usuário editado";
 
-            return RedirectToAction ("Listar");
+            return RedirectToAction("Listar");
         }
     }
 }

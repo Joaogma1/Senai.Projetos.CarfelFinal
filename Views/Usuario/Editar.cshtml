@@ -1,18 +1,19 @@
-@using Senai.Aulas.ProjetoFinal.Models;
+@using Projeto_Senai.Carfel.Final.Models;
 @{
-    Layout= "MasterPageUsuario";
+    Layout= "LoginAdmin";
 }
 <html>
     <h1>Formulário de Edição</h1>
 
     @{
-        UsuarioModel usuario = ViewBag.Usuario;   
+        UsuarioModel usuario = ViewBag.Usuario; 
     }
 
     @ViewBag.Mensagem
 
     <form action="/Usuario/Editar" method="POST">
-        <input type="hidden" value="@usuario.ID" name="id">
+        <input type="hidden" value="@usuario.Id" name="id">
+        
         <label>
             Nome
             <input type="text" value="@usuario.Nome" name="nome">
@@ -25,9 +26,13 @@
             Senha
             <input type="password" value="@usuario.Senha" name="senha">
         </label>
+            <input type="radio" name="admin" value="True">
         <label>
-            Data de nascimento
-            <input type="date" value="@usuario.DataNascimento.ToString("yyyy-MM-dd")" name="dataNascimento">
+            Administrador
+        </label>
+                    <input type="radio" name="admin" value="False">
+        <label>
+            Usuario
         </label>
         <button type="submit">Salvar</button>
     </form>

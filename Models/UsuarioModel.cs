@@ -1,10 +1,8 @@
 using System;
-
-namespace Senai.Aulas.ProjetoFinal.Models {
-
-    [Serializable]
+namespace Projeto_Senai.Carfel.Final.Models {
     public class UsuarioModel {
-        public int ID { get; set; }
+        #region Propriedades
+        public int Id { get; set; }
 
         public string Nome { get; set; }
 
@@ -12,37 +10,36 @@ namespace Senai.Aulas.ProjetoFinal.Models {
 
         public string Senha { get; set; }
 
-        public DateTime DataNascimento { get; set; }
-        private Boolean Admin { get; set; }
+        public bool Administrador { get; set; }
+        #endregion
 
-        public UsuarioModel () {
-
-        }
-        public UsuarioModel (string email, string senha) {
-            this.Email = email;
-            this.Senha = senha;
-        }
-        public UsuarioModel (string nome, string email, string senha, Boolean tipo) {
+        // Metodos -------------------------------------------------------------------------------------------------------------------------- //
+        public UsuarioModel (int id, string nome, string email, string senha, bool admin) {
+            this.Id = id;
             this.Nome = nome;
             this.Email = email;
             this.Senha = senha;
-            this.Admin = tipo;
+            this.Administrador = admin;
         }
-
-        public UsuarioModel (string nome, string email, string senha, DateTime dataNascimento) {
+        public UsuarioModel(int id){
+            this.Id = id;
+        }
+        public UsuarioModel(string nome, string email, string senha){
             this.Nome = nome;
             this.Email = email;
             this.Senha = senha;
-            this.DataNascimento = dataNascimento;
         }
 
-        public UsuarioModel (int id, string nome, string email, string senha, DateTime dataNascimento) {
-            this.ID = id;
+        public UsuarioModel (string nome, string email, string senha, bool admin) {
+            // O 'id' será definido no repositório;
             this.Nome = nome;
             this.Email = email;
             this.Senha = senha;
-            this.DataNascimento = dataNascimento;
+            this.Administrador = admin;
         }
-
+        public UsuarioModel(string email, string senha){
+            this.Email = email;
+            this.Senha = senha;
+        }
     }
 }

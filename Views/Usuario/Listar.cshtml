@@ -1,47 +1,43 @@
-@using Senai.Aulas.ProjetoFinal.Models;
+@using Projeto_Senai.Carfel.Final.Models;
+
 @{
-    Layout= "MasterPageUsuario";
+    Layout= "LoginAdmin";
 }
-<h3>Listagem de usuários</h3>
+<h3>Listagem de Usuários</h3>
 
 @TempData["Mensagem"]
 
 <table>
     <thead>
         <tr>
-            <td>Nome</td>
-            <td>Data</td>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Admin</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
-        @foreach(UsuarioModel usuario in ViewData["Usuarios"] as List<UsuarioModel>)
+        @foreach (var item in ViewData["Usuarios"] as List<UsuarioModel>)
         {
             <tr>
                 <td>
-                    @usuario.Nome
+                    @item.Id
                 </td>
                 <td>
-                    @usuario.Email
+                    @item.Nome
                 </td>
                 <td>
-                    @usuario.DataNascimento.ToShortDateString()
+                    @item.Email
                 </td>
                 <td>
-                    <a href="/Usuario/Excluir?id=@usuario.ID">Excluir</a>
-                    <a href="/Usuario/Editar?id=@usuario.ID">Editar</a>
+                    @item.Administrador
+                </td>
+                <td>
+                    <a href="/Usuario/Excluir?id=@item.Id">Excluir</a>
+                    <a href="/Usuario/Editar?id=@item.Id">Editar</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
-@* @UsuarioModel razor  *@
-
-<select>
-    @foreach (UsuarioModel usuario in ViewData["Usuarios"] as List<UsuarioModel>)
-    {
-        <option>
-            @usuario.Nome
-        </option>
-    }
-</select>
