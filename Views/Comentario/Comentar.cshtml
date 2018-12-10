@@ -1,14 +1,23 @@
-
-  @{
+@using Microsoft.AspNetCore.Http;
+@using Senai.Aulas.ProjetoFinal.Models;
+@{
     Layout = "LoginAdmin";
 }
+@if (Context.Session.GetString ("NomeUsuario") != null)
+{
   <section class="contact">
             <h2>Comentario</h2>
             <div class="contact-itens">
                 <form action="/Comentario/Comentar" method="POST">
-                    <textarea name="Comentario"cols="30" rows="10" maxlength="700" placeholder="Digite seu comentario..." ></textarea>
+                    <input name="Comentario" maxlength="80" placeholder="Digite seu comentario..." >
                     <input type="submit" value="Enviar">
                 </form>
             </div>
-            <!-- Fim div contact itens -->
+         
         </section>
+    
+}else
+{
+    <p>Você deve Estar logado para Comentar!</p> <a href="/Usuario/Login">  Logar </a>
+    
+}

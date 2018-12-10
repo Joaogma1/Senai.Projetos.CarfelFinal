@@ -1,0 +1,38 @@
+@using Senai.Aulas.ProjetoFinal.Models;
+@{
+    Layout= "LoginAdmin";
+}
+<html>
+    <h1>Formulário de Edição</h1>
+
+    @{
+        ComentarioModel Comentario = ViewBag.Usuario; 
+    }
+
+    @ViewBag.Mensagem
+
+    <form action="/Comentario/Editar" method="POST">
+        <input type="hidden" value="@Comentario.ID" name="id">
+        <input type="hidden" value="@Comentario.IDusuario" name="idUsuario">
+        <input type="datetime" value="@Comentario.DataComentario" name="data"  readonly >
+
+
+        <label>
+            Usuario que comentou
+            <input type="text" value="@Comentario.Nome" name="nome" readonly >
+        </label>
+        <label>
+            Comentario 
+            <input type="text" value="@Comentario.Comentario" name="comentario" readonly>
+        </label>
+            <input type="radio" name="aprovado" value="False" >
+        <label>
+            Comentario Desaprovado 
+        </label>
+                    <input type="radio" name="aprovado" value="True">
+        <label>
+            Aprovado
+        </label>
+        <button type="submit">Salvar</button>
+    </form>
+</html>

@@ -171,3 +171,31 @@ body{
         width: 90vw;
     }
 }
+table {
+    flex-direction: column;
+    display: flex;
+    /* align-items: baseline; */
+    margin-left: 20%;
+}
+tbody{
+    display: flex;
+    flex-direction: column-reverse;
+}
+tr{
+    display: flex;
+    flex-direction: column;
+}
+.comentarioUser{
+    font-size: 1.5em;
+    margin: 0% 0px 1% 0px;
+}
+.dataUser{
+    margin: 0% 0px 3% 0px;
+    font-size: 1.2em;
+    color: gray;
+}
+.nomeUser{
+    font-size: 1.8em;
+    font-weight: 700;
+    margin: 1% 0px 0.5% 0px;
+}

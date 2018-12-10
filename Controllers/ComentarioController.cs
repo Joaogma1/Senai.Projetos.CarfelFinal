@@ -39,6 +39,13 @@ namespace Senai.Aulas.ProjetoFinal.Controllers {
 
             return View ();
         }
+               [HttpGet]
+        public IActionResult ListarAdmin () {
+
+            ViewData["Comentarios"] = ComentarioRepositorio.Listar ();
+
+            return View ();
+        }
 
         [HttpGet]
         public IActionResult Excluir (int id) {
@@ -53,17 +60,17 @@ namespace Senai.Aulas.ProjetoFinal.Controllers {
         public IActionResult Editar (int id) {
 
             if (id == 0) {
-                TempData["Mensagem"] = "Informe um usuário para editar";
+                TempData["Mensagem"] = "Informe um comentario para editar";
                 return RedirectToAction ("Listar");
             }
 
             ComentarioRepositorio comentarioRepositorio = new ComentarioRepositorio ();
-            ComentarioModel usuario = ComentarioRepositorio.BuscarPorId (id);
+            ComentarioModel comentario = ComentarioRepositorio.BuscarPorId (id);
 
-            if (usuario != null) {
-                ViewBag.Usuario = usuario;
+            if (comentario != null) {
+                ViewBag.comentario = comentario;
             } else {
-                TempData["Mensagem"] = "Usuário não encontrado";
+                TempData["Mensagem"] = "comentario não encontrado";
                 return RedirectToAction ("Listar");
             }
             return View ();
@@ -72,7 +79,7 @@ namespace Senai.Aulas.ProjetoFinal.Controllers {
         [HttpPost]
         public IActionResult Editar (IFormCollection form) {
             //Declara um objeto ComentarioModel e atribui os valores do form
-            ComentarioModel usuario = new ComentarioModel (
+            ComentarioModel comentario = new ComentarioModel (
                 id: int.Parse (form["id"]),
                 nome: form["nome"],
                 comentario: form["comentario"],
@@ -83,9 +90,9 @@ namespace Senai.Aulas.ProjetoFinal.Controllers {
 
             //Cria um objeto ComentarioRepositorio e edita
             ComentarioRepositorio ComentarioRepositorio = new ComentarioRepositorio ();
-            ComentarioRepositorio.Editar (usuario);
+            ComentarioRepositorio.Editar (comentario);
 
-            TempData["Mensagem"] = "Usuário editado";
+            TempData["Mensagem"] = "Comentario editado";
 
             return RedirectToAction ("Listar");
         }

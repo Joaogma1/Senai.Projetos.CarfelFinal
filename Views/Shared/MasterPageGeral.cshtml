@@ -1,3 +1,5 @@
+@using Microsoft.AspNetCore.Http;
+@using Senai.Aulas.ProjetoFinal.Models;
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -6,10 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Site responsivo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
-    <script src="js/main.js"></script>
 </head>
 
 <body>
@@ -20,24 +21,59 @@
         <nav id="menuTopo" class="menu">
             <ul class="escondido">
                 <li>
-                    <a href="#">Home</a>
+                    <a href="/Home/index">Home</a>
                 </li>
                 <li>
-                    <a href="#">Sobre</a>
+                    <a href="/Comentario/Listar">Comentarios</a>
                 </li>
                 <li>
-                    <a href="#">Comentario</a>
+                    <a href="/Comentario/Comentar">Opine sobre</a>
                 </li>
+                
                 <li>
+                @if (Context.Session.GetString ("NomeUsuario") != null)
+                {
+                    <a href="#">@Context.Session.GetString("NomeUsuario")</a>
+                }else
+                {
                     <a href="/Usuario/Login">Entrar</a>
+                }
                 </li>
             </ul>
         </nav>
     </header>
     <main>
-        @RenderBody()
+        
+<div class="banner">
+            <div class="banner-text">
+                <h2>Carfel Website</h2>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores expedita vel veniam, quaerat a quo reprehenderit
+                    vero laborum iste impedit, illum fugiat ea voluptatum. In impedit voluptatem consequatur mollitia nisi.</p>
+            </div>
+            <!-- Fim div baner-text -->
+        </div>
+        <!-- fim div banner  -->
+        <section class="cont-principal">
+            <h2>Mais loko que o batiman</h2>
+            <div class="cont-principal-itens">
+                <article class="cont-principal-item">
+                    <h3>Mobile</h3>
+                    <P>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores expedita vel veniam, quaerat a quo
+                        reprehenderit vero </P>
+                </article>
+                <article class="cont-principal-item">
+                    <h3>Mobile</h3>
+                    <P>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores expedita vel veniam, quaerat a quo
+                        reprehenderit vero </P>
+                </article>
+                <article class="cont-principal-item">
+                    <h3>Mobile</h3>
+                    <P>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores expedita vel veniam, quaerat a quo
+                        reprehenderit vero </P>
+                </article>
+            </div>
     </main>
-
+@RenderBody()
 </body>
 
 

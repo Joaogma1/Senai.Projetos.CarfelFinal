@@ -1,0 +1,41 @@
+@using Senai.Aulas.ProjetoFinal.Models;
+@{
+    Layout = "LoginAdmin";
+}
+<h3>Listagem de Comentarios</h3>
+@TempData["Mensagem"]
+<table>
+    <thead>
+        <tr>
+            <th>DataComentario</th>
+            <th>Nome</th>
+            <th>Comentario</th>
+            <th>Aprovado</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+ @foreach(ComentarioModel Comentario in ViewData["Comentarios"] as List<ComentarioModel>)
+        {
+                       <tr>
+                <td>
+                    @Comentario.DataComentario
+                </td>
+                <td>
+                    @Comentario.Nome
+                </td>
+                <td>
+                    @Comentario.Comentario
+                </td>
+                <td>
+                    @Comentario.Aprovado
+                </td>
+                <td>
+                    <a href="/Comentario/Excluir?id=@Comentario.ID">Excluir</a>
+                    <a href="/Comentario/Editar?id=@Comentario.ID">Gerenciar</a>
+                </td>
+            </tr>
+            }
+        
+            </tbody>
+</table>

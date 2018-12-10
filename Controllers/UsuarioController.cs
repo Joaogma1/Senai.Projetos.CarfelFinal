@@ -61,8 +61,11 @@ namespace Senai.Aulas.ProjetoFinal.Controllers {
                 HttpContext.Session.SetString ("NomeUsuario", usuarioModel.Nome);
                 HttpContext.Session.SetInt32("IdUsuario", usuarioModel.Id);
                 ViewBag.Mensagem = "Login realizado com sucesso!";
-
-                return RedirectToAction ("Comentar", "Comentario"); // implemntar direcionamento para home logada
+                if (usuario.Administrador)
+                {
+                    return View(); // retornar parar a pagina de admin
+                }
+                return RedirectToAction ("Index", "Home"); // implemntar direcionamento para home logada
             } 
                 ViewBag.Mensagem = "Acesso negado!";
 

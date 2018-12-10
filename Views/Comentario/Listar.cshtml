@@ -1,43 +1,28 @@
 @using Senai.Aulas.ProjetoFinal.Models;
 @{
-    Layout = "LoginAdmin";
+    Layout= "MasterPageGeral";;
 }
-<h3>Listagem de Comentarios</h3>
-@TempData["Mensagem"]
-<table>
-    <thead>
-        <tr>
-            <th>DataComentario</th>
-            <th>Nome</th>
-            <th>Comentario</th>
-            <th>Aprovado</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
+
+        <table>
     <tbody>
- @foreach(ComentarioModel Comentario in ViewData["Comentarios"] as List<ComentarioModel>)
+        
+@foreach (ComentarioModel Comentario in ViewData["Comentarios"]  as List<ComentarioModel>)
         {
-            if (Comentario.Aprovado)
-            {
-                       <tr>
-                <td>
-                    @Comentario.DataComentario
-                </td>
-                <td>
+            if(Comentario.Aprovado){
+            <tr>
+                <td class="nomeUser">
                     @Comentario.Nome
                 </td>
-                <td>
+                <td class="comentarioUser">
                     @Comentario.Comentario
                 </td>
-                <td>
-                    @Comentario.Aprovado
+                <td class="dataUser">
+                    @Comentario.DataComentario
                 </td>
-                <td>
-                    <a href="/Usuario/Excluir?id=@Comentario.ID">Excluir</a>
-                    <a href="/Usuario/Editar?id=@Comentario.ID">Editar</a>
-                </td>
-            </tr>
+</tr>
+                
             }
-        }
-            </tbody>
+                 }
+    </tbody>
 </table>
+
