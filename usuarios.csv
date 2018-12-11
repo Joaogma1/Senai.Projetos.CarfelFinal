@@ -1,7 +1,10 @@
-1;joao;jgm@gmail.com;123456;False
+1;joao;jgm@gmail.com;123456;True
 
 3;Marcos123;abcd@gmail.com;9876543211;False
-4;joao;jgm.joaogma@gmail.com;poli2541;False
-5;jojo;jojo@.com;123456;False
-6;fernando;fe@.com;123456;False
+4;João;jgm.joaogma@gmail.com;poli2541;True
+5;jojo;jojo@g.com;123456;True
+6;fernando;fe@gmail.com;123456;True
 7;candida;candida@cloro.com;12345;False
+8;Administrador;admin@carfel.com;admin;True
+9;Gabs;gabs@gmail.com;beleza;False
+10;princesa;ka@g.com;123;False

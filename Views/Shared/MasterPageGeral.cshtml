@@ -1,5 +1,6 @@
 @using Microsoft.AspNetCore.Http;
 @using Senai.Aulas.ProjetoFinal.Models;
+@using Projeto_Senai.Carfel.Final.Models;
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -16,7 +17,7 @@
 <body>
     <header class="top-bar">
         <div class="logo">
-            <h1>Carfel</h1>
+            <h1 style="color: dodgerblue;">Carfel</h1>
         </div>
         <nav id="menuTopo" class="menu">
             <ul class="escondido">
@@ -33,12 +34,25 @@
                 <li>
                 @if (Context.Session.GetString ("NomeUsuario") != null)
                 {
+                    @if (Context.Session.GetString ("TipoUsuario") == "False")
+                    {
                     <a href="#">@Context.Session.GetString("NomeUsuario")</a>
+                    }else
+                    {
+                    <a href="/Painel/Painel">@Context.Session.GetString("NomeUsuario")</a>
+                    }
                 }else
                 {
                     <a href="/Usuario/Login">Entrar</a>
                 }
                 </li>
+                 @if (Context.Session.GetString ("NomeUsuario") != null)
+                {
+                    <li>
+                        <a href="/Usuario/Deslogar" >Sair</a>
+                    </li>
+                }
+                
             </ul>
         </nav>
     </header>

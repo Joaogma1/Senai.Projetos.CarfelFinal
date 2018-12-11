@@ -1,20 +1,23 @@
 @using Senai.Aulas.ProjetoFinal.Models;
 @{
-    Layout= "LoginAdmin";
+    Layout= "Admin";
 }
 <html>
-    <h1>Formulário de Edição</h1>
+    <h1 style="text-align: center; margin-bottom: 1em;">Formulário de Edição</h1>
 
     @{
-        ComentarioModel Comentario = ViewBag.Usuario; 
+        ComentarioModel Comentario = ViewBag.Comentario; 
     }
 
     @ViewBag.Mensagem
 
-    <form action="/Comentario/Editar" method="POST">
-        <input type="hidden" value="@Comentario.ID" name="id">
+    <form action="/Comentario/Editar" method="POST" style="display: flex; flex-direction: column;align-items: center">
+        <input type="hidden" value="@Comentario.ID" name="id"> 
         <input type="hidden" value="@Comentario.IDusuario" name="idUsuario">
+        <label>
+            Data Comentario:
         <input type="datetime" value="@Comentario.DataComentario" name="data"  readonly >
+        </label>
 
 
         <label>

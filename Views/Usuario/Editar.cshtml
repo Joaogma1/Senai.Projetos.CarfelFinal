@@ -1,17 +1,16 @@
 @using Projeto_Senai.Carfel.Final.Models;
 @{
-    Layout= "LoginAdmin";
+    Layout= "Admin";
 }
 <html>
-    <h1>Formulário de Edição</h1>
+    <h1 style="text-align: center">Formulário de Edição</h1>
 
     @{
         UsuarioModel usuario = ViewBag.Usuario; 
     }
 
-    @ViewBag.Mensagem
 
-    <form action="/Usuario/Editar" method="POST">
+    <form action="/Usuario/Editar" method="POST" style="display: flex; flex-direction: column;align-items: center">
         <input type="hidden" value="@usuario.Id" name="id">
         
         <label>

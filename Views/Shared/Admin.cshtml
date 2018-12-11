@@ -1,0 +1,54 @@
+@using Microsoft.AspNetCore.Http;
+@using Senai.Aulas.ProjetoFinal.Models;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminPage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" type="text/css" media="screen" href="/css/Painel.css" />
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>  
+    <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="#" name="top">Carfel</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li><a href="/Home/Index"><i class="icon-home icon-white"></i> Home</a></li>
+                        <li class="divider-vertical"></li>
+                        <li><a href="/Comentario/ListarAdmin"><i class="icon-envelope icon-white"></i> Comentarios</a></li>
+                        <li class="divider-vertical"></li>
+                        <li><a href="/Usuario/Listar"><i class="icon-lock icon-white"></i> Usuarios</a></li>
+                        <li class="divider-vertical"></li>
+                    </ul>
+                    <div class="btn-group pull-right">
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="icon-user"></i> @Context.Session.GetString("NomeUsuario")
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="icon-wrench"></i> Settings</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#"><i class="icon-share"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+            <!--/.container-fluid -->
+        </div>
+        <!--/.navbar-inner -->
+    </div>
+    <!--/.navbar -->
+    @RenderBody()
+</body>
+</html>

@@ -1,15 +1,15 @@
 @using Microsoft.AspNetCore.Http;
 @using Senai.Aulas.ProjetoFinal.Models;
 @{
-    Layout = "LoginAdmin";
+    Layout = "MasterPageGeral";
 }
 @if (Context.Session.GetString ("NomeUsuario") != null)
 {
   <section class="contact">
-            <h2>Comentario</h2>
+            <h2>Deixe sua opinião</h2>
             <div class="contact-itens">
                 <form action="/Comentario/Comentar" method="POST">
-                    <input name="Comentario" maxlength="80" placeholder="Digite seu comentario..." >
+                    <input name="Comentario" maxlength="80" placeholder="Digite um comentario..." >
                     <input type="submit" value="Enviar">
                 </form>
             </div>
@@ -18,6 +18,8 @@
     
 }else
 {
-    <p>Você deve Estar logado para Comentar!</p> <a href="/Usuario/Login">  Logar </a>
-    
+<div class="alert">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  <strong style="color: black">Você deve Estar logado para Comentar!</strong> <a class="requerir-login" href="/Usuario/Login">  Logar </a>
+</div>
 }

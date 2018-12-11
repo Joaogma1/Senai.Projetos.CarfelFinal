@@ -20,7 +20,7 @@ body{
 .logo{
     color:#fff;
     display: flex;
-    font-size: 1.4em;
+    font-size: 1em;
     /* background: #888; */
     flex:1;
     justify-content: space-between;
@@ -42,11 +42,11 @@ body{
 .menu ul a{
     color:#FFF;
     text-decoration: none;
-    font-size: 1.8em;
+    font-size: 1.4em;
     padding: 0.8em 2em;
 }
 .menu ul a:hover{
-    color: yellow;
+    color: rgb(24, 157, 240);
 }
 
 .banner{
@@ -199,3 +199,37 @@ tr{
     font-weight: 700;
     margin: 1% 0px 0.5% 0px;
 }
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .closebtn:hover {
+    color: black;
+  }
+  .barra-separacao{
+    background-color: black;
+    height: 3px;
+    width: 100%;
+    margin-bottom: 1em;
+  }
+  .Comentarios{
+      background-color: #d3d3d3;
+      padding-top: 0.4em;
+  }
+  .titulo-Comentario{
+    text-align: center;
+    font-size: 2em;
+  }

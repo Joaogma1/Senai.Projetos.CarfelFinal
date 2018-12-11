@@ -53,7 +53,7 @@ namespace Senai.Aulas.ProjetoFinal.Controllers {
  
             TempData["Mensagem"] = "Usuário excluído";
 
-            return RedirectToAction ("Listar");
+            return RedirectToAction ("ListarAdmin");
         }
 
         [HttpGet]
@@ -61,7 +61,7 @@ namespace Senai.Aulas.ProjetoFinal.Controllers {
 
             if (id == 0) {
                 TempData["Mensagem"] = "Informe um comentario para editar";
-                return RedirectToAction ("Listar");
+                return RedirectToAction ("ListarAdmin");
             }
 
             ComentarioRepositorio comentarioRepositorio = new ComentarioRepositorio ();
@@ -71,7 +71,7 @@ namespace Senai.Aulas.ProjetoFinal.Controllers {
                 ViewBag.comentario = comentario;
             } else {
                 TempData["Mensagem"] = "comentario não encontrado";
-                return RedirectToAction ("Listar");
+                return RedirectToAction ("ListarAdmin");
             }
             return View ();
         }
@@ -94,7 +94,9 @@ namespace Senai.Aulas.ProjetoFinal.Controllers {
 
             TempData["Mensagem"] = "Comentario editado";
 
-            return RedirectToAction ("Listar");
+            ViewBag.Comentario = comentario;
+
+            return RedirectToAction ("ListarAdmin");
         }
 
     }

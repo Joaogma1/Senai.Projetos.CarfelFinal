@@ -59,13 +59,12 @@ namespace Senai.Aulas.ProjetoFinal.Controllers {
 
             if (usuarioModel != null) {
                 HttpContext.Session.SetString ("NomeUsuario", usuarioModel.Nome);
+                HttpContext.Session.SetString("TipoUsuario", usuarioModel.Administrador.ToString());
                 HttpContext.Session.SetInt32("IdUsuario", usuarioModel.Id);
                 ViewBag.Mensagem = "Login realizado com sucesso!";
-                if (usuario.Administrador)
-                {
-                    return View(); // retornar parar a pagina de admin
-                }
+                   
                 return RedirectToAction ("Index", "Home"); // implemntar direcionamento para home logada
+                
             } 
                 ViewBag.Mensagem = "Acesso negado!";
 
@@ -134,6 +133,11 @@ namespace Senai.Aulas.ProjetoFinal.Controllers {
             TempData["Mensagem"] = "Usuário editado";
 
             return RedirectToAction("Listar");
+        }
+        [HttpGet]
+        public IActionResult Deslogar(){
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
